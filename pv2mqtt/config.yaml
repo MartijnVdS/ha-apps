@@ -1,0 +1,39 @@
+name: "pv2mqtt"
+version: "1.0.0"
+image: "ghcr.io/martijnvds/ha-apps/pv2mqtt"
+slug: "pv2mqtt"
+description: "SunSpec to MQTT Gateway for Solar Inverters"
+arch:
+  - aarch64
+  - amd64
+services:
+  - "mqtt:need"
+apparmor: true
+uart: true
+startup: "services"
+boot: "auto"
+host_network: false
+options:
+  topic_prefix: "pv2mqtt"
+  connections:
+    - name: "inverter1"
+      type: "tcp"
+      address: "192.168.1.10:502"
+      devices:
+        - unit_id: 1
+          interval: 30
+schema:
+  mqtt_url: str?
+  topic_prefix: str
+  connections:
+    - name: str
+      type: list(tcp|rtu)
+      address: str?
+      device: str?
+      baud_rate: int?
+      parity: match(none|even|odd)?
+      tls: bool?
+      keep_alive_interval: int?
+      devices:
+        - unit_id: int
+          interval: int

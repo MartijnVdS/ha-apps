@@ -1,0 +1,22 @@
+#include <tunables/global>
+
+profile pv2mqtt_addon /usr/local/bin/pv2mqtt flags=(attach_disconnected) {
+  #include <abstractions/base>
+  #include <abstractions/nameservice>
+
+  # Allow reading and writing the configuration file in /data
+  /data/pv2mqtt.toml rw,
+  /data/ r,
+
+  # Allow execution of the binary itself (already covered by entry point but explicit is safer)
+  /usr/local/bin/pv2mqtt mr,
+
+  # Allow network connections for MQTT and Modbus TCP
+  network inet stream,
+  network inet6 stream,
+
+  # If Modbus RTU (Serial) is used, we need access to serial devices
+  # Home Assistant addons typically map these to /dev/tty*
+  /dev/tty[A-Za-z]* rw,
+  /dev/serial/by-id/* rw,
+}

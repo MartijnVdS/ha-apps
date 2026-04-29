@@ -1,0 +1,45 @@
+configuration:
+  mqtt_url:
+    name: "MQTT URL"
+    description: "The URL of the MQTT broker. Supports mqtt:// (unencrypted), mqtts:// or ssl:// (TLS encrypted). If left empty, it will attempt to use the Home Assistant MQTT service."
+  topic_prefix:
+    name: "MQTT Topic Prefix"
+    description: "Prefix for all inverter data topics. Inverter data is published to: {topic_prefix}/inverter/{serial_number}"
+  connections:
+    name: "Connections"
+    description: "List of Modbus connections to solar inverters."
+    fields:
+      name:
+        name: "Connection Name"
+        description: "Human-readable name for this connection (used in logs)."
+      type:
+        name: "Modbus Type"
+        description: "Modbus transport type: 'tcp' or 'rtu'."
+      address:
+        name: "TCP Address"
+        description: "For TCP connections: 'hostname:port' or 'ip:port' (e.g., 192.168.1.10:502)."
+      device:
+        name: "Serial Device"
+        description: "For RTU connections: path to the serial device (e.g., /dev/ttyUSB0)."
+      baud_rate:
+        name: "Baud Rate"
+        description: "For RTU connections: the baud rate (e.g., 9600)."
+      parity:
+        name: "Parity"
+        description: "For RTU connections: serial parity (none, even, or odd)."
+      tls:
+        name: "Use TLS"
+        description: "Enable TLS for Modbus Security (usually port 802)."
+      keep_alive_interval:
+        name: "Keep-Alive Interval"
+        description: "Interval (in seconds) to send a keep-alive 'ping' if there has been no activity. Useful for devices that timeout quickly. Set to 0 to disable."
+      devices:
+        name: "Devices"
+        description: "List of SunSpec devices on this Modbus connection."
+        fields:
+          unit_id:
+            name: "Modbus Unit ID"
+            description: "Modbus Unit ID (Slave ID) of the device (1-247). Must be unique within this specific connection."
+          interval:
+            name: "Polling Interval"
+            description: "Polling interval in seconds for this specific device."
