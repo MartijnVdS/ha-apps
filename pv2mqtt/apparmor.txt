@@ -1,22 +1,58 @@
 #include <tunables/global>
 
-profile pv2mqtt_addon /usr/local/bin/pv2mqtt flags=(attach_disconnected) {
+profile pv2mqtt flags=(attach_disconnected,mediate_deleted) {
   #include <abstractions/base>
-  #include <abstractions/nameservice>
 
-  # Allow reading and writing the configuration file in /data
-  /data/pv2mqtt.toml rw,
-  /data/ r,
+  # Capabilities
+  file,
+  signal (send) set=(kill,term,int,hup,cont),
 
-  # Allow execution of the binary itself (already covered by entry point but explicit is safer)
-  /usr/local/bin/pv2mqtt mr,
+  # S6-Overlay
+  /init ix,
+  /bin/** ix,
+  /usr/bin/** ix,
+  /run/{s6,s6-rc*,service}/** ix,
+  /package/** ix,
+  /command/** ix,
+  /etc/services.d/** rwix,
+  /etc/cont-init.d/** rwix,
+  /etc/cont-finish.d/** rwix,
+  /run/{,**} rwk,
+  /dev/tty rw,
 
-  # Allow network connections for MQTT and Modbus TCP
-  network inet stream,
-  network inet6 stream,
+  # Bashio
+  /usr/lib/bashio/** ix,
+  /tmp/** rwk,
 
-  # If Modbus RTU (Serial) is used, we need access to serial devices
-  # Home Assistant addons typically map these to /dev/tty*
-  /dev/tty[A-Za-z]* rw,
-  /dev/serial/by-id/* rw,
+  # Access to options.json and other files within your addon
+  /data/** rw,
+
+  # Start new profile for service
+  /usr/local/bin/pv2mqtt cx -> pv2mqtt_app,
+
+  profile pv2mqtt_app flags=(attach_disconnected,mediate_deleted) {
+    #include <abstractions/base>
+
+    # Receive signals from S6-Overlay
+    signal (receive) peer=*_pv2mqtt,
+
+    # Access to options.json and other files within your addon
+    /data/** rw,
+
+    # Access required for service functionality
+    /usr/local/bin/pv2mqtt r,
+    /bin/bash rix,
+    /bin/echo ix,
+    /etc/passwd r,
+    /dev/tty rw,
+
+    # For MQTT and Modbus-TCP
+    network inet stream,
+    network inet6 stream,
+
+    # If Modbus RTU (Serial) is used, we need access to serial devices
+    # Home Assistant addons typically map these to /dev/tty*
+    /dev/tty[A-Za-z]* rw,
+    /dev/serial/by-id/* rw,
+  }
 }

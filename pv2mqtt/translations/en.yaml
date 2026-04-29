@@ -33,13 +33,16 @@ configuration:
       keep_alive_interval:
         name: "Keep-Alive Interval"
         description: "Interval (in seconds) to send a keep-alive 'ping' if there has been no activity. Useful for devices that timeout quickly. Set to 0 to disable."
-      devices:
-        name: "Devices"
-        description: "List of SunSpec devices on this Modbus connection."
-        fields:
-          unit_id:
-            name: "Modbus Unit ID"
-            description: "Modbus Unit ID (Slave ID) of the device (1-247). Must be unique within this specific connection."
-          interval:
-            name: "Polling Interval"
-            description: "Polling interval in seconds for this specific device."
+  devices:
+    name: "Devices"
+    description: "List of SunSpec devices on this Modbus connection."
+    fields:
+      connection:
+        name: "Connection name"
+        description: "Connection name this device is attached to"
+      unit_id:
+        name: "Modbus Unit ID"
+        description: "Modbus Unit ID (Slave ID) of the device (1-247). Must be unique within this specific connection."
+      interval:
+        name: "Polling Interval"
+        description: "Polling interval in seconds for this specific device."
