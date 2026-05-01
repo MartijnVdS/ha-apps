@@ -1,5 +1,5 @@
 name: "pv2mqtt"
-version: "v0.0.1"
+version: "v0.0.2"
 #image: "ghcr.io/martijnvds/ha-apps/pv2mqtt"
 slug: "pv2mqtt"
 description: "An MQTT Gateway for Solar Inverters, using SunSpec"
@@ -37,6 +37,6 @@ schema:
       tls: bool?
       keep_alive_interval: int?
   devices:
-    - connection: str
-      unit_id: int
+    - unit_id: int
+      connection: str
       interval: int

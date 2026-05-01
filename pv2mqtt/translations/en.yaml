@@ -37,12 +37,12 @@ configuration:
     name: "Devices"
     description: "List of SunSpec devices on this Modbus connection."
     fields:
-      connection:
-        name: "Connection name"
-        description: "Connection name this device is attached to"
       unit_id:
         name: "Modbus Unit ID"
         description: "Modbus Unit ID (Slave ID) of the device (1-247). Must be unique within this specific connection."
+      connection:
+        name: "Connection name"
+        description: "Connection name this device is attached to"
       interval:
         name: "Polling Interval"
         description: "Polling interval in seconds for this specific device."

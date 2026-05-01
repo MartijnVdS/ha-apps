@@ -21,6 +21,8 @@ if [ -z "$MQTT_URL" ] || [ "$MQTT_URL" == "null" ]; then
     MQTT_URL="${MQTT_PROTO}://${MQTT_USER}:${MQTT_PASS}@${MQTT_HOST}:${MQTT_PORT}"
 fi
 
+set -x
+
 # Generate the final TOML configuration
 # The application (pv2mqtt) performs its own validation of the configuration file.
 jq -n \
