@@ -25,9 +25,11 @@ set -x
 
 # Generate the final TOML configuration
 # The application (pv2mqtt) performs its own validation of the configuration file.
+TOPIC_PREFIX=$(bashio::config "topic_prefix")
+
 jq -n \
   --arg url "$MQTT_URL" \
-  --arg prefix "$(bashio::config 'topic_prefix' | jq -r 'if type == "string" then . else empty end')" \
+  --arg prefix "$TOPIC_PREFIX" \
   --argjson connections "$(bashio::config 'connections' | jq -c -s 'if length == 1 and (.[0] | type == "array") then .[0] else . end')" \
   --argjson devices "$(bashio::config 'devices' | jq -c -s 'if length == 1 and (.[0] | type == "array") then .[0] else . end')" \
   '
