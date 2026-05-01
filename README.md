@@ -4,7 +4,7 @@ This repository contains custom Home Assistant add-ons.
 
 Apps documentation: <https://developers.home-assistant.io/docs/apps>
 
-[![Open your Home Assistant instance and show the app store with a specific repository URL pre-filled.](https://my.home-assistant.io/badges/supervisor_store.svg)](https://my.home-assistant.io/redirect/supervisor_store/?repository_url=https%3A%2F%2Fgithub.com%2FMartijnVdS%2Fha-apps)
+[![Open your Home Assistant instance and show the add app repository dialog with a specific repository URL pre-filled.](https://my.home-assistant.io/badges/supervisor_add_addon_repository.svg)](https://my.home-assistant.io/redirect/supervisor_add_addon_repository/?repository_url=https%3A%2F%2Fgithub.com%2FMartijnVdS%2Fha-apps)
 
 ## Available Add-ons
 
