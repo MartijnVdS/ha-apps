@@ -1,5 +1,5 @@
 name: "pv2mqtt"
-version: "v0.0.6"
+version: "v0.0.7"
 #image: "ghcr.io/martijnvds/ha-apps/pv2mqtt"
 slug: "pv2mqtt"
 description: "An MQTT Gateway for Solar Inverters, using SunSpec"
@@ -27,15 +27,16 @@ options:
       interval: 30
 schema:
   mqtt_url: str?
+  client_id: str?
   topic_prefix: str
   connections:
     - name: str
       type: list(tcp|rtu)
       address: str?
+      tls: bool?
       device: str?
       baud_rate: int?
       parity: match(none|even|odd)?
-      tls: bool?
       keep_alive_interval: int?
   devices:
     - unit_id: int
