@@ -1,5 +1,5 @@
 name: "pv2mqtt"
-version: "v0.0.5"
+version: "v0.0.6"
 #image: "ghcr.io/martijnvds/ha-apps/pv2mqtt"
 slug: "pv2mqtt"
 description: "An MQTT Gateway for Solar Inverters, using SunSpec"
@@ -16,6 +16,7 @@ boot: "auto"
 host_network: false
 options:
   topic_prefix: "pv2mqtt"
+  client_id: "pv2mqtt"
   connections:
     - name: "inverter1"
       type: "tcp"

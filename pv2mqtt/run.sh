@@ -26,17 +26,19 @@ set -x
 # Generate the final TOML configuration
 # The application (pv2mqtt) performs its own validation of the configuration file.
 TOPIC_PREFIX=$(bashio::config "topic_prefix")
+CLIENT_ID=$(bashio::config "client_id")
 
 jq -n \
   --arg url "$MQTT_URL" \
   --arg prefix "$TOPIC_PREFIX" \
+  --arg client_id "$CLIENT_ID" \
   --argjson connections "$(bashio::config 'connections' | jq -c -s 'if length == 1 and (.[0] | type == "array") then .[0] else . end')" \
   --argjson devices "$(bashio::config 'devices' | jq -c -s 'if length == 1 and (.[0] | type == "array") then .[0] else . end')" \
   '
   {
     mqtt: {
       url: $url,
-      client_id: "pv2mqtt",
+      client_id: $client_id,
       topic_prefix: $prefix,
       ha_prefix: "homeassistant"
     },

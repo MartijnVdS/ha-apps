@@ -5,6 +5,9 @@ configuration:
   topic_prefix:
     name: "MQTT Topic Prefix"
     description: "Prefix for all inverter data topics. Inverter data is published to: {topic_prefix}/inverter/{serial_number}"
+  client_id:
+    name: "MQTT Client ID"
+    description: "Unique identifier for the MQTT client"
   connections:
     name: "Connections"
     description: "List of Modbus connections to solar inverters."
