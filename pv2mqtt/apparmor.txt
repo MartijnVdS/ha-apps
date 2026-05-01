@@ -33,6 +33,7 @@ profile pv2mqtt flags=(attach_disconnected,mediate_deleted) {
   profile pv2mqtt_app flags=(attach_disconnected,mediate_deleted) {
     #include <abstractions/base>
     #include <abstractions/nameservice>
+    #include <abstractions/ssl_certs>
 
     # Receive signals from S6-Overlay
     signal (receive) peer=*_pv2mqtt,
