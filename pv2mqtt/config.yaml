@@ -2,7 +2,7 @@ name: "pv2mqtt"
 # Version convention: {pv2mqtt upstream version}-{iteration}
 # - "iteration" goes up by 1 every time the configuration or Dockerfile
 #   in this repository changes
-version: "v1.0.2-2"
+version: "v1.1.0-1"
 image: "ghcr.io/martijnvds/ha-apps/pv2mqtt"
 slug: "pv2mqtt"
 description: "An MQTT Gateway for Solar Inverters, using SunSpec"
@@ -28,6 +28,7 @@ options:
     - connection: "inverter1"
       unit_id: 1
       interval: 30
+      enable_controls: false
 schema:
   mqtt_url: str?
   client_id: str?
@@ -45,3 +46,4 @@ schema:
     - unit_id: int
       connection: str
       interval: int
+      enable_controls: bool
