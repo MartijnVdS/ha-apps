@@ -65,4 +65,4 @@ bashio::log.info "Starting pv2mqtt..."
 
 # pv2mqtt reads the config file from the current working directory
 cd /data
-/usr/local/bin/pv2mqtt
+/usr/local/bin/pv2mqtt "$CONFIG_PATH"
