@@ -1,3 +1,7 @@
+## v1.4.1-1
+
+* Fix register offset for writing "model 704" power limit controls
+
 ## v1.4.0-1
 
 * Update to upstream v1.4.0
