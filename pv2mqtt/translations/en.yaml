@@ -49,3 +49,9 @@ configuration:
       interval:
         name: "Polling Interval"
         description: "Polling interval in seconds for this specific device."
+      enable_controls:
+        name: "Enable controls"
+        description: "Allow controlling output power through MQTT messages in addition to reading."
+      preferred_model:
+        name: "Preferred SunSpec 'Inverter' model"
+        description: "Specify which SunSpec model to use to retrieve inverter data, in case the one picked by default does not contain all fields."
