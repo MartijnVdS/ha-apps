@@ -53,6 +53,7 @@ jq -n \
           device: .device,
           baud_rate: .baud_rate,
           parity: .parity,
+          stop_bits: .stop_bits,
           tls: .tls
         } | with_entries(select(.value != null))),
         devices: ($devices | map(select(.connection == $conn_name) | del(.connection)))

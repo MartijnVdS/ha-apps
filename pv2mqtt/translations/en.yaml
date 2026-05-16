@@ -30,6 +30,9 @@ configuration:
       parity:
         name: "Parity"
         description: "For RTU connections: serial parity (none, even, or odd)."
+      stop_bits:
+        name: "Stop bits"
+        description: "For RTU connections: stop bits (1 or 2)."
       tls:
         name: "Use TLS"
         description: "Enable TLS for Modbus Security (usually port 802)."

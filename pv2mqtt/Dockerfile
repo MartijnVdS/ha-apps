@@ -8,7 +8,7 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy the binary from from the official image
-COPY --from=ghcr.io/martijnvds/pv2mqtt:v1.4.1 \
+COPY --from=ghcr.io/martijnvds/pv2mqtt:v1.6.1 \
     /app/pv2mqtt \
     /usr/local/bin/pv2mqtt
 

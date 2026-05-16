@@ -1,3 +1,8 @@
+## v1.6.1-1
+
+* Support setting the "stop bits" to use on RTU connections
+* Code cleanups
+
 ## v1.4.1-1
 
 * Fix register offset for writing "model 704" power limit controls
